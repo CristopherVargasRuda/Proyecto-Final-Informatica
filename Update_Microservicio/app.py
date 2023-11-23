@@ -2,8 +2,10 @@ from flask import Flask, jsonify, make_response, request
 from flask_sqlalchemy import SQLAlchemy
 from entidades.libro import db, Libro 
 from sqlalchemy.exc import IntegrityError
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Puerto
 PORT = 5004
