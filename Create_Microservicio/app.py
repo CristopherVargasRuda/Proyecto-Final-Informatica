@@ -11,7 +11,7 @@ CORS(app)
 PORT = 5001
 
 # Configuración BD
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:asd123@localhost/CRUD_Libros'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:asd123@postgres_microservicio:5432/CRUD_Libros'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializa extensión SQLAlchemy
