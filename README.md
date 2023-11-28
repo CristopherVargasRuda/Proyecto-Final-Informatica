@@ -37,6 +37,10 @@ Se comunica con los microservicios correspondientes para realizar las operacione
 - *postgres_microservicio (Puerto 5432)*: Maneja la base de datos PostgreSQL y gestiona las operaciones de la base de datos.
 - *Red Docker*:Todos los microservicios, excepto el front-end, se ejecutan en una red Docker llamada mired, que facilita la comunicación entre ellos.
 
+##### Microservicios en Docker
+
+![Microservicios](Diagrams/microservicios_docker.PNG)
+
 #### Ejemplo de Diagrama de Secuencia - Obtener Todos los Libros:
 
 A continuación, se presenta un ejemplo de cómo se realiza la operación de obtener todos los libros desde la interfaz de usuario hasta la base de datos:
