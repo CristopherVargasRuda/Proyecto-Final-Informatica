@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdCancel } from "react-icons/md";
 import { FaPlusCircle } from "react-icons/fa";
+import createBook from "../../api/Create";
 
 const CreateForm = () => {
 
@@ -44,8 +45,21 @@ const CreateForm = () => {
             editorial: editorial
         }
 
+        handleCreateBook(newData);
+
         console.log(newData);
     };
+
+    const handleCreateBook = async (newData) => {
+        try {
+            const bookCreated = createBook(newData);
+            alert('Libro creado exitosamente: ',bookCreated);
+            navigate('/');
+            window.location.reload();
+        } catch (error) {
+            console.error("Error al editar libro:", error);
+        }
+    }
 
     return (
         <>
@@ -115,7 +129,7 @@ const CreateForm = () => {
                 </div>
                 <div className="d-flex justify-content-center mt-3">
 
-                    <button type="submit" className="btn btn-primary me-2">
+                    <button type="submit" className="btn btn-primary me-2" onClick={() => handleCreateConfirm()}>
                         <FaPlusCircle size={20} /> Crear libro
                     </button>
                     <button

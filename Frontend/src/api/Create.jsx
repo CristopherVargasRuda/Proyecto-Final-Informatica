@@ -4,9 +4,9 @@ const axiosInstance = axios.create({
     baseURL: `http://localhost:5001`, 
 });
 
-const updateBook = async (id, bookRequest) => {
+const createBook = async (bookRequest) => {
     try {
-        const response = await axiosInstance.put(`/actualizarLibro/${id}`, bookRequest);
+        const response = await axiosInstance.post(`/crearLibro`, bookRequest);
         console.log(response);
         return response;
     } catch (error) {
@@ -14,4 +14,4 @@ const updateBook = async (id, bookRequest) => {
     }
 };
 
-export default updateBook;
+export default createBook;
