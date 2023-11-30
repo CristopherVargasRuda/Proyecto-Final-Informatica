@@ -16,7 +16,7 @@ const BooksContainer = () => {
 
   const fetchData = async () => {
     try {
-      if (routeId && routeId !== null) {
+      if (routeId) {
         const book = await getBooks.getById(routeId);
         setFilteredBook(book);
       }

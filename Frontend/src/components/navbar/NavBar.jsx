@@ -23,6 +23,7 @@ const NavBar = () => {
     const goHome = () => {
         setBookId('');
         navigate('/');
+        window.location.reload();
     }
     return (
         <div className="container my-4">
