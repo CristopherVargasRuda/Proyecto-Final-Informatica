@@ -8,7 +8,8 @@ const getBooks = {
     getAll: async () => {
         try {
             const response = await axiosInstance.get('/obtenerLibros');
-            return response.data;
+            console.log(response);
+            return response.data.libros;
         } catch (error) {
             throw error;
         }
