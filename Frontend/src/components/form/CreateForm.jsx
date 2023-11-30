@@ -53,7 +53,7 @@ const CreateForm = () => {
     const handleCreateBook = async (newData) => {
         try {
             const bookCreated = createBook(newData);
-            alert('Libro creado exitosamente: ',bookCreated);
+            alert('Libro creado exitosamente');
             navigate('/');
             window.location.reload();
         } catch (error) {
