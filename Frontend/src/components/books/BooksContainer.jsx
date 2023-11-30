@@ -1,19 +1,32 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import books from "../../data/books";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+// import books from "../../data/books";
 import BookItem from "./BookItem";
+import getBooks from "../../api/Read";
 
 const BooksContainer = () => {
   const { id: routeId } = useParams(); // Obtén el ID de la ruta
   const [filteredBook, setFilteredBook] = useState(null);
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
     // Filtro del libro, aquí iría el llamado al endpoint
-    const book = books.find(book => String(book.id) === routeId);
-    setFilteredBook(book);
+    fetchData();
   }, [routeId]);
 
-  
+  const fetchData = async () => {
+    try {
+      if (routeId) {
+        const book = await getBooks.getById(routeId);
+        setFilteredBook(book);
+      }
+      const books = await getBooks.getAll();
+      setBooks(books);
+    } catch (error) {
+      console.error("Error al obtener productos:", error);
+    }
+  };
+
   return (
     <>
       <div className="mx-auto border rounded table-responsive p-0">
@@ -26,7 +39,9 @@ const BooksContainer = () => {
               <th scope="col">Género</th>
               <th scope="col">Año</th>
               <th scope="col">Editorial</th>
-              <th scope="col" className="col-2">Acciones</th>
+              <th scope="col" className="col-2">
+                Acciones
+              </th>
             </tr>
           </thead>
           <tbody>
