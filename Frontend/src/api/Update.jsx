@@ -7,7 +7,8 @@ const axiosInstance = axios.create({
 const updateBook = async (id, bookRequest) => {
     try {
         const response = await axiosInstance.put(`/actualizarLibro/${id}`, bookRequest);
-        return response.data;
+        console.log(response);
+        return response;
     } catch (error) {
         throw error;
     }

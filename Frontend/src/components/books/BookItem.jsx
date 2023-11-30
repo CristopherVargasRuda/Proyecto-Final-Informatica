@@ -2,6 +2,7 @@ import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
 import { GiWhiteBook } from "react-icons/gi";
 import { useNavigate } from 'react-router-dom';
+import deleteBook from "../../api/Delete";
 
 const BookItem = ({infoBook }) => {
     const { id, titulo, autor, genero, año_publicacion, editorial } = infoBook;
@@ -11,6 +12,14 @@ const BookItem = ({infoBook }) => {
         // Navega a la ruta '/editar' y pasa el libro como estado
         navigate('/editar', { state: { libro: infoBook } });
     };
+
+    const handleDelete = async (id) => {
+        try {
+            await deleteBook(id);
+        } catch (error) {
+            console.error("Error al eliminar libro:", error);
+        }
+    }
 
     return (
         <>
@@ -27,7 +36,7 @@ const BookItem = ({infoBook }) => {
                     <button type="button" className="btn btn-primary mx-2" onClick={handleEdit}>
                         <CiEdit size={20} />
                     </button>
-                    <button type="button" className="btn btn-danger" id="eliminar">
+                    <button type="button" className="btn btn-danger" id="eliminar" onClick={handleDelete(id)}>
                         <MdDeleteForever size={20} />
                     </button>
                 </td>

@@ -7,7 +7,8 @@ const axiosInstance = axios.create({
 const deleteBook = async (libroId) => {
     try {
         const response = await axiosInstance.delete(`/eliminarLibro/${libroId}`);
-        return response.data;
+        console.log(response);
+        return response;
     } catch (error) {
         throw error;
     }
