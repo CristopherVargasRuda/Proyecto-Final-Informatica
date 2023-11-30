@@ -4,6 +4,7 @@ import { MdEditDocument } from "react-icons/md";
 import { MdCancel } from "react-icons/md";
 import { IoIosSave } from "react-icons/io";
 import { FaBook } from "react-icons/fa";
+import updateBook from "../../api/Update";
 
 const EditForm = () => {
 
@@ -19,7 +20,7 @@ const EditForm = () => {
     const location = useLocation();
     const { state } = location;
     const { libro } = state;
-    const { titulo: initialTitulo, autor: initialAutor, genero: initialGenero, año_publicacion: initialAñoPublicacion, editorial: initialEditorial } = libro || {};
+    const { id: id, titulo: initialTitulo, autor: initialAutor, genero: initialGenero, año_publicacion: initialAñoPublicacion, editorial: initialEditorial } = libro || {};
 
     // States
     const [titulo, setTitulo] = useState(initialTitulo || '');
@@ -56,8 +57,21 @@ const EditForm = () => {
         }
 
         console.log(newData);
+        handleEditBook(id, newData);
+        
         setEditMode(false);
     };
+
+    const handleEditBook = async (id, newData) => {
+        try {
+            const bookEdited = updateBook(id, newData);
+            alert('Libro editado exitosamente');
+            navigate('/');
+            window.location.reload();
+        } catch (error) {
+            console.error("Error al editar libro:", error);
+        }
+    }
 
     return (
         <>
@@ -134,7 +148,7 @@ const EditForm = () => {
                 <div className="d-flex justify-content-center mt-3">
                     {editMode ? (
                         <>
-                            <button type="submit" className="btn btn-primary me-2">
+                            <button type="submit" className="btn btn-primary me-2" onClick={() => handleEditConfirm()}>
                                 <IoIosSave size={20} /> Guardar
                             </button>
                             <button
